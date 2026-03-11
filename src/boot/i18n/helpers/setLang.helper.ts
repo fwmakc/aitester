@@ -11,6 +11,6 @@ export async function setLang(langIso: string): Promise<void> {
   localStorage.setItem(STORAGE_KEY, langIso);
   const module = await modules[`../../node_modules/quasar/lang/${langIso}.js`]?.();
   if (module) {
-    Quasar.lang.set(module.default);
+    Quasar.lang.set(module.default, () => {});
   }
 }
