@@ -16,6 +16,14 @@
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" bordered show-if-above side="left">
+      <!-- Заголовок, который виден только если drawer в режиме "мобильного" (overlay) -->
+      <q-toolbar v-if="$q.screen.lt.md" class="bg-primary text-white">
+        <q-toolbar-title>
+          <header-component />
+        </q-toolbar-title>
+        <q-btn flat icon="close" round @click="leftDrawerOpen = false" />
+      </q-toolbar>
+
       <main-menu-component />
     </q-drawer>
 
