@@ -10,10 +10,11 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { increment } from './helpers/increment.helper';
+
 import { todos } from './consts/todos.const';
+import { increment } from './helpers/increment.helper';
 
 const clickCount = ref(0);
 
-const inc = () => increment(clickCount);
+const inc = (): number => increment(clickCount);
 </script>

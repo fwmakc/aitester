@@ -1,5 +1,7 @@
-import { LANG_MODES, LangMode } from '../consts/langOptions.const';
+import type { LangMode } from '../consts/langOptions.const';
+import { LANG_MODES } from '../consts/langOptions.const';
 import { STORAGE_KEY } from '../consts/storageKey.const';
+
 import { detectBrowserLang } from './detectBrowserLang.helper';
 
 export function getInitialLang(): string {

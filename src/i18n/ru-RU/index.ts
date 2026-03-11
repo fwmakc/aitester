@@ -13,4 +13,8 @@ export default {
     criteriaPage: 'Критерии',
     runsPage: 'Тесты',
   },
+  errors: {
+    e404: 'Запрошенной страницы не существует',
+    mainPage: 'На главную',
+  },
 };

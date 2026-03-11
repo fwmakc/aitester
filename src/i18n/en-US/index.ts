@@ -13,4 +13,8 @@ export default {
     criteriaPage: 'Criteria',
     runsPage: 'Runs',
   },
+  errors: {
+    e404: 'Page does not exist',
+    mainPage: 'Main page',
+  },
 };

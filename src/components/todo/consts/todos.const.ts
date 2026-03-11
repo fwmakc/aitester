@@ -1,5 +1,6 @@
 import { ref } from 'vue';
-import { Todo } from '../interfaces/todo.interface';
+
+import type { Todo } from '../interfaces/todo.interface';
 
 export const todos = ref<Todo[]>([
   {

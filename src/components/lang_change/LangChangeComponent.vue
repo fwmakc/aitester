@@ -1,8 +1,8 @@
 <template>
   <div class="lang-change-component">
-    <q-select v-model="lang" :options="LANG_OPTIONS" label-color="white" dense borderless emit-value map-options>
+    <q-select v-model="lang" borderless dense emit-value label-color="white" map-options :options="LANG_OPTIONS">
       <template v-slot:append>
-        <q-icon name="language" color="white" />
+        <q-icon color="white" name="language" />
         <q-tooltip>{{ LANG_OPTIONS.filter(item => item.value === lang)[0]?.label }}</q-tooltip>
       </template>
       <template v-slot:selected></template>
@@ -11,22 +11,18 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, onMounted } from 'vue';
-import { getInitialLang } from './helpers/getInitialLang.helper';
-import { LANG_DEFAULT, LANG_OPTIONS } from './consts/langOptions.const';
-import type { LangMode } from './consts/langOptions.const';
-import { setLang } from './helpers/setLang.helper';
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 
-const lang = ref(LANG_DEFAULT);
+import { LANG_OPTIONS, setLang } from 'src/boot/i18n';
 
-onMounted(async () => {
-  const initialLang = getInitialLang();
-  lang.value = initialLang as LangMode;
-  await setLang(initialLang);
-});
+const { locale } = useI18n();
 
-watch(lang, async val => {
-  await setLang(val);
+const lang = computed({
+  get: () => locale.value,
+  set: val => {
+    void setLang(val);
+  },
 });
 </script>
 

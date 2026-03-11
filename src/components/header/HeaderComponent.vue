@@ -8,8 +8,5 @@ import { useRoute } from 'vue-router';
 const { t } = useI18n();
 const route = useRoute();
 
-const pageName = computed(() => {
-  const page = t(`pages.${String(route.name)}`);
-  return page ? `: ${page}` : '';
-});
+const pageName = computed(() => (route.name ? `: ${t(`pages.${String(route.name)}`)}` : ''));
 </script>

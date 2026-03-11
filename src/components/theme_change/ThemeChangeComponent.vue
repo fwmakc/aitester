@@ -1,39 +1,26 @@
 <template>
   <div class="theme-change-component">
-    <q-btn flat round dense :icon="THEME_ICONS[theme]" @click="cycleTheme">
+    <q-btn dense flat :icon="THEME_ICONS[theme]" round @click="changeTheme">
       <q-tooltip>{{ t('theme.' + theme) }}</q-tooltip>
     </q-btn>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
 import { useQuasar } from 'quasar';
+import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { THEME_ICONS, THEME_MODES, type ThemeMode } from './consts/themeOptions.const';
-import { STORAGE_KEY } from './consts/storageKey.const';
-import { getInitialTheme } from './helpers/getInitialTheme.helper';
 
-const $q = useQuasar();
+import { THEME_ICONS, THEME_MODES, applyTheme, initialTheme, type ThemeMode } from 'src/boot/theme';
+
 const { t } = useI18n();
+const $q = useQuasar();
 
-const theme = ref<ThemeMode>('auto');
+const theme = ref<ThemeMode>(initialTheme);
 
-function applyTheme(mode: ThemeMode) {
-  if (mode === 'dark') $q.dark.set(true);
-  else if (mode === 'light') $q.dark.set(false);
-  else $q.dark.set('auto');
-  localStorage.setItem(STORAGE_KEY, mode);
-}
-
-function cycleTheme() {
+function changeTheme(): void {
   const idx = THEME_MODES.indexOf(theme.value);
   theme.value = THEME_MODES[(idx + 1) % THEME_MODES.length]!;
-  applyTheme(theme.value);
+  applyTheme(theme.value, $q);
 }
-
-onMounted(() => {
-  theme.value = getInitialTheme();
-  applyTheme(theme.value);
-});
 </script>
