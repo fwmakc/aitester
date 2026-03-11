@@ -1,5 +1,5 @@
-import type { LangMode } from '../consts/langOptions.const';
-import { LANG_DEFAULT, LANG_MODES } from '../consts/langOptions.const';
+import { LANG_MODES } from '../consts/lang.const';
+import type { LangMode } from '../types/langMode.type';
 
 export function detectBrowserLang(): string {
   const browserLang = navigator.language;
@@ -14,5 +14,5 @@ export function detectBrowserLang(): string {
     return matched;
   }
 
-  return LANG_DEFAULT;
+  return LANG_MODES[0] as string;
 }

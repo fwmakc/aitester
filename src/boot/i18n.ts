@@ -25,7 +25,8 @@ export const i18n = createI18n<{ message: MessageSchema }, MessageLanguages, fal
 });
 
 export { setLang } from './i18n/helpers/setLang.helper';
-export { LANG_OPTIONS, type LangMode } from './i18n/consts/langOptions.const';
+export { LANG_OPTIONS } from './i18n/consts/lang.const';
+export type { LangMode } from './i18n/types/langMode.type';
 
 export default defineBoot(({ app }) => {
   app.use(i18n);

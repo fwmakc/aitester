@@ -1,6 +1,6 @@
-import type { LangMode } from '../consts/langOptions.const';
-import { LANG_MODES } from '../consts/langOptions.const';
+import { LANG_MODES } from '../consts/lang.const';
 import { STORAGE_KEY } from '../consts/storageKey.const';
+import type { LangMode } from '../types/langMode.type';
 
 import { detectBrowserLang } from './detectBrowserLang.helper';
 

@@ -1,7 +1,7 @@
 import type { QVueGlobals } from 'quasar';
 
 import { STORAGE_KEY } from '../consts/storageKey.const';
-import type { ThemeMode } from '../consts/themeOptions.const';
+import type { ThemeMode } from '../types/themeMode.type';
 
 const darkValues: Record<ThemeMode, boolean | 'auto'> = {
   dark: true,
