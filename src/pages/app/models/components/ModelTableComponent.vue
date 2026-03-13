@@ -4,21 +4,14 @@
     flat
     row-key="name"
     :rows="filteredRows"
-    :rows-per-page-options="[10, 20, 50]"
-    title="Models"
+    :rows-per-page-options="[10, 50, 100]"
+    separator="none"
   >
     <template #header="props">
       <q-tr :props="props">
         <q-th v-for="col in props.cols" :key="col.name" :props="props">
           <div class="q-mb-xs">{{ col.label }}</div>
-          <q-input
-            v-if="col.name !== 'apiKey'"
-            v-model="filters[col.name as keyof Filters]"
-            class="q-mt-xs"
-            dense
-            outlined
-            @click.stop
-          >
+          <q-input v-model="filters[col.name as keyof Filters]" class="q-mt-xs" dense outlined @click.stop>
             <template #append>
               <q-icon
                 v-if="filters[col.name as keyof Filters]"
@@ -38,8 +31,11 @@
 <script setup lang="ts">
 import type { QTableColumn } from 'quasar';
 import { computed, reactive } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 import type { Model } from '../interfaces/model.interface';
+
+const { t } = useI18n();
 
 interface Props {
   models: Model[];
@@ -48,23 +44,15 @@ interface Props {
 const props = defineProps<Props>();
 
 interface Filters {
-  apiKey: string;
-  maxTokens: string;
   model: string;
   name: string;
   provider: string;
-  temperature: string;
-  url: string;
 }
 
 const filters = reactive<Filters>({
-  apiKey: '',
-  maxTokens: '',
   model: '',
   name: '',
   provider: '',
-  temperature: '',
-  url: '',
 });
 
 const filteredRows = computed(() => {
@@ -83,7 +71,7 @@ const columns: QTableColumn<Model>[] = [
   {
     align: 'left',
     field: 'name',
-    label: 'Name',
+    label: t('models.name'),
     name: 'name',
     required: true,
     sortable: true,
@@ -91,44 +79,15 @@ const columns: QTableColumn<Model>[] = [
   {
     align: 'left',
     field: 'provider',
-    label: 'Provider',
+    label: t('models.provider'),
     name: 'provider',
     sortable: true,
   },
   {
     align: 'left',
     field: 'model',
-    label: 'Model',
+    label: t('models.model'),
     name: 'model',
-    sortable: true,
-  },
-  {
-    align: 'left',
-    field: 'url',
-    label: 'URL',
-    name: 'url',
-    sortable: true,
-  },
-  {
-    align: 'left',
-    field: 'apiKey',
-    format: (val: string) => (val ? '••••••••' : ''),
-    label: 'API Key',
-    name: 'apiKey',
-    sortable: true,
-  },
-  {
-    align: 'right',
-    field: 'temperature',
-    label: 'Temperature',
-    name: 'temperature',
-    sortable: true,
-  },
-  {
-    align: 'right',
-    field: 'maxTokens',
-    label: 'Max Tokens',
-    name: 'maxTokens',
     sortable: true,
   },
 ];

@@ -1,1 +1,1 @@
-export const MENU: string[] = ['modelsPage', 'settingsPage', 'criteriaPage', 'runsPage'];
+export const MENU: string[] = ['modelsPage', 'settingsPage', 'criteriaPage', 'testsPage'];

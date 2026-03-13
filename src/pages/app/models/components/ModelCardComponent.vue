@@ -6,19 +6,25 @@
 
     <q-card-section>
       <div class="q-gutter-md">
-        <q-input v-model="localModel.name" dense label="Name" outlined />
+        <q-input v-model="localModel.name" dense :label="t('models.name')" outlined />
 
-        <q-input v-model="localModel.provider" dense label="Provider" outlined />
+        <q-input v-model="localModel.provider" dense :label="t('models.provider')" outlined />
 
-        <q-input v-model="localModel.model" dense label="Model" outlined />
+        <q-input v-model="localModel.model" dense :label="t('models.model')" outlined />
 
-        <q-input v-model="localModel.url" dense label="URL" outlined />
+        <q-input v-model="localModel.url" dense :label="t('models.url')" outlined />
 
-        <q-input v-model="localModel.apiKey" dense label="API Key" outlined type="password" />
+        <q-input v-model="localModel.apiKey" dense :label="t('models.apiKey')" outlined type="password" />
 
-        <q-input v-model.number="localModel.temperature" dense label="Temperature" outlined type="number" />
+        <q-input
+          v-model.number="localModel.temperature"
+          dense
+          :label="t('models.temperature')"
+          outlined
+          type="number"
+        />
 
-        <q-input v-model.number="localModel.maxTokens" dense label="Max Tokens" outlined type="number" />
+        <q-input v-model.number="localModel.maxTokens" dense :label="t('models.maxTokens')" outlined type="number" />
       </div>
     </q-card-section>
 
@@ -31,8 +37,11 @@
 
 <script setup lang="ts">
 import { reactive, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 import type { Model } from '../interfaces/model.interface';
+
+const { t } = useI18n();
 
 interface Props {
   modelValue: Model;

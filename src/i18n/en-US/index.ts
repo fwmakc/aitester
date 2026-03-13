@@ -11,7 +11,26 @@ export default {
     modelsPage: 'Models',
     settingsPage: 'Settings',
     criteriaPage: 'Criteria',
-    runsPage: 'Runs',
+    testsPage: 'Tests',
+  },
+  models: {
+    card: 'Model Card',
+    name: 'Name',
+    provider: 'Provider',
+    model: 'Model',
+    url: 'Url',
+    apiKey: 'API Key',
+    temperature: 'Temperature',
+    maxTokens: 'Max tokens',
+  },
+  settings: {
+    card: 'Settings Card',
+  },
+  criteria: {
+    card: 'Criteria Card',
+  },
+  tests: {
+    card: 'Tests Card',
   },
   errors: {
     e404: 'Page does not exist',
