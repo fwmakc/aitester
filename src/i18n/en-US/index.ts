@@ -2,10 +2,19 @@ export default {
   failed: 'Action failed',
   success: 'Action was successful',
   appTitle: 'AI Tester',
+  save: 'Save',
+  cancel: 'Cancel',
   theme: {
     light: 'Light theme',
     dark: 'Dark theme',
     auto: 'Auto theme',
+  },
+  table: {
+    addRow: 'Add',
+    noDataLabel: 'No entries',
+    page: 'page',
+    pageOfPages: 'of',
+    rowsPerPageLabel: 'rows',
   },
   pages: {
     modelsPage: 'Models',

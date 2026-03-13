@@ -1,7 +1,7 @@
 <template>
   <q-card class="model-card">
     <q-card-section>
-      <div class="text-h6">Model Configuration</div>
+      <div class="text-h6">{{ t('models.card') }}</div>
     </q-card-section>
 
     <q-card-section>
@@ -29,8 +29,8 @@
     </q-card-section>
 
     <q-card-actions align="right">
-      <q-btn color="primary" flat label="Save" @click="onSave" />
-      <q-btn color="grey" flat label="Cancel" @click="onCancel" />
+      <q-btn color="primary" flat :label="t('save')" @click="onSave" />
+      <q-btn color="grey" flat :label="t('cancel')" @click="onCancel" />
     </q-card-actions>
   </q-card>
 </template>

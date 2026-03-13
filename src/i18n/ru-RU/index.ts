@@ -2,10 +2,19 @@ export default {
   failed: 'Действие не удалось',
   success: 'Действие выполнено успешно',
   appTitle: 'AI Тестер',
+  save: 'Сохранить',
+  cancel: 'Отмена',
   theme: {
     light: 'Светлая тема',
     dark: 'Тёмная тема',
     auto: 'Авто тема',
+  },
+  table: {
+    addRow: 'Добавить',
+    noDataLabel: 'Нет записей',
+    page: 'страница',
+    pageOfPages: 'из',
+    rowsPerPageLabel: 'строк',
   },
   pages: {
     modelsPage: 'Модели',

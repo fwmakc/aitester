@@ -2,16 +2,35 @@
   <q-table
     :columns="columns"
     flat
+    :no-data-label="t('table.noDataLabel')"
+    :pagination-label="
+      (firstRow, endRow, totalRows) => {
+        const page = Math.ceil(endRow / (endRow - firstRow + 1));
+        const pages = Math.ceil(totalRows / (endRow - firstRow + 1));
+        return `${t('table.page')} ${page} ${page !== pages ? `${t('table.pageOfPages')} ${pages}` : ''}`;
+      }
+    "
     row-key="name"
     :rows="filteredRows"
+    :rows-per-page-label="t('table.rowsPerPageLabel')"
     :rows-per-page-options="[10, 50, 100]"
     separator="none"
   >
+    <template #top>
+      <q-btn color="primary" icon="add" padding="sm" round size="xs" unelevated @click="() => {}" />
+    </template>
     <template #header="props">
       <q-tr :props="props">
         <q-th v-for="col in props.cols" :key="col.name" :props="props">
           <div class="q-mb-xs">{{ col.label }}</div>
-          <q-input v-model="filters[col.name as keyof Filters]" class="q-mt-xs" dense outlined @click.stop>
+          <q-input
+            v-if="col.name !== 'actions'"
+            v-model="filters[col.name as keyof Filters]"
+            class="q-mt-xs"
+            dense
+            outlined
+            @click.stop
+          >
             <template #append>
               <q-icon
                 v-if="filters[col.name as keyof Filters]"
@@ -24,6 +43,12 @@
           </q-input>
         </q-th>
       </q-tr>
+    </template>
+    <template v-slot:body-cell-actions="props">
+      <q-td :props="props">
+        <q-btn color="primary" flat icon="edit" padding="sm" round size="xs" @click="() => {}" />
+        <q-btn color="negative" flat icon="delete" padding="sm" round size="xs" @click="() => {}" />
+      </q-td>
     </template>
   </q-table>
 </template>
@@ -89,6 +114,12 @@ const columns: QTableColumn<Model>[] = [
     label: t('models.model'),
     name: 'model',
     sortable: true,
+  },
+  {
+    name: 'actions',
+    label: '',
+    field: () => '',
+    align: 'right',
   },
 ];
 </script>
